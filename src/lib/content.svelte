@@ -1,19 +1,27 @@
+<script>
+    export let messages = [
+        //"Give me a list of all available suppliers. Give me a list of all available suppliers. Give me a list of all available suppliers. Give me a list of all available suppliers.",
+        //"List of suppliers:* 1* 2* 3* 4* 5"
+    ];
+
+    export function AddMessage(NewMessage) {
+        messages.push(NewMessage);
+        messages = messages;
+    }
+</script>
+
 <section class="content">
-    <div class="bubble bubble-user">
-        <div class="sub-bubble sub-bubble-user">
-            Give me a list of all available suppliers. Give me a list of all available suppliers. Give me a list of all available suppliers. Give me a list of all available suppliers.
-        </div>
-    </div>
-    <div class="bubble bubble-copilot">
-        <div class="sub-bubble">
-            List of suppliers:
-            * 1
-            * 2
-            * 3
-            * 4
-            * 5
-        </div>
-    </div>
+    {#each messages as message, i}
+        {#if i % 2 == 0}
+            <div class="bubble bubble-user">
+                <div class="sub-bubble sub-bubble-user">{message}</div>
+            </div>
+        {:else}
+            <div class="bubble bubble-copilot">
+                <div class="sub-bubble">{message}</div>
+            </div>
+        {/if}
+    {/each}
 </section>
 
 <style>

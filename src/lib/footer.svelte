@@ -1,28 +1,37 @@
 <script>
-    export let text = "";
+    import { getContext } from 'svelte';
+    const { SubmitMessage } = getContext('messageCtx');
 
-    function handleSubmit(e){
-        if(e.key == "Enter") {
-            console.log("Yes!")
+    export let textMessage = "";
+
+    function handleSubmit(e) {
+        if (e.key == "Enter") {
+            SendMessage();
         }
-        else {
-            console.log("Fuck")
+    }
+
+    function SendMessage() {
+        if (textMessage.length != 0) {
+            SubmitMessage(textMessage);
+            setTimeout(() => {
+                textMessage = "";
+            }, 10);
         }
     }
 </script>
 
 <section class="footer">
-    <textarea name="prompt" id="prompt" placeholder="Say something like 'Give me a list of all available suppliers'" on:keydown={handleSubmit}>{text}</textarea>
+    <textarea bind:value={textMessage} name="prompt" id="prompt" placeholder="Say something like 'Give me a list of all available suppliers'" on:keydown={handleSubmit}></textarea>
     <div class="icon-cabinet">
         <div style="height: 20px;">
-            <button on:click={() => {text = "Attachment"}} style="margin-right: 10px;">
+            <button on:click={() => {}} style="margin-right: 10px;">
                 <img class="icon" src="attachment.png" alt="attachment">
             </button>
-            <button on:click={() => {text = "Voice"}}>
+            <button on:click={() => {}}>
                 <img class="icon" src="voice.png" alt="voice">
             </button>
         </div>
-        <button on:click={() => {text = "Send"}}>
+        <button on:click={() => { SendMessage() }}>
             <img class="icon" src="send.png" alt="send">
         </button>
     </div>
