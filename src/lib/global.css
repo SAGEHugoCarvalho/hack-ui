@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'SageText-Regular';
+    src: url('SageText-Regular.otf');
+}
+
+* {
+    font-family: 'SageText-Regular', Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+}
