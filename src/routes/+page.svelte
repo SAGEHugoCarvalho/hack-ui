@@ -11,22 +11,17 @@
 
 	async function SubmitMessage(message) {
         child.AddMessage(message);
-        //const res = await BackendCall(message);
-        //child.AddMessage(res.Content);
-
-        setTimeout(() => {
-            child.AddMessage("Reply from the backed...");
-        }, 2000);
+        BackendCall(message);
 	}
 
-    async function BackendCall(prompt) {
+    function BackendCall(prompt) {
 
-        const url = 'http://127.0.0.1/8000';
+        const url = 'http://127.0.0.1:8000/ask';
 
         const options = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json'},
-            body: JSON.stringify(prompt)
+            body: JSON.stringify({ question: prompt })
         };
 
         fetch(url, options)
@@ -38,10 +33,10 @@
                 return response.json();
             })
             .then(data => {
-                console.log('Response:', data);
+                child.AddMessage(data.output);
             })
             .catch(error => {
-                console.error('There was a problem with the request:', error);
+                child.AddMessage('An unexpected problem occured. Please try again.');
             });
     }
 </script>
