@@ -15,7 +15,7 @@
     }
 </script>
 
-<section class="chatbox-section grow" id="scrollable">
+<section class="chatbox-section" id="scrollable">
     {#each messages as message, i}
         {#if i % 2 == 0}
             <div class="chat-bubble chat-bubble-user">
@@ -31,25 +31,10 @@
 
 <style>
     .chatbox-section {
+        flex-grow: 1;
         max-height: 772px;
         padding: 20px 20px 0 20px;
         overflow: auto;
-    }
-    
-    .grow {
-        flex-grow: 1;
-    }
-    
-    @media only screen and (max-width: 768px) {
-        .grow {
-            flex-grow: 2;
-        }
-    }
-
-    @media only screen and (max-width: 480px) {
-        .grow {
-            flex-grow: 3;
-        }
     }
 
     .chat-bubble {
