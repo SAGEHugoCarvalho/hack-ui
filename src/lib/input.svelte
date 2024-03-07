@@ -2,7 +2,7 @@
     import { getContext } from 'svelte';
     const { SubmitMessage } = getContext('messageCtx');
 
-    export let textMessage = "";
+    let textMessage = "";
 
     function handleSubmit(e) {
         if (e.key == "Enter") {
@@ -20,14 +20,14 @@
     }
 </script>
 
-<section class="footer">
+<section class="input-section">
     <textarea bind:value={textMessage} name="prompt" id="prompt" placeholder="Say something like 'Give me a list of all available suppliers'" on:keydown={handleSubmit}></textarea>
     <div class="icon-cabinet">
-        <div style="height: 20px;">
-            <button on:click={() => {}} style="margin-right: 10px;">
+        <div>
+            <button style="margin-right: 10px;">
                 <img class="icon" src="attachment.png" alt="attachment">
             </button>
-            <button on:click={() => {}}>
+            <button>
                 <img class="icon" src="voice.png" alt="voice">
             </button>
         </div>
@@ -38,7 +38,7 @@
 </section>
 
 <style>
-    .footer{
+    .input-section{
         padding: 10px;
     }
 

@@ -1,4 +1,4 @@
-<section class="header">
+<section class="header-section">
     <img class="logo" src="logo.png" alt="logo">
     <div class="text-wrapper">
         <strong>Sage Copilot</strong>
@@ -7,11 +7,10 @@
 </section>
 
 <style>
-    .header{
+    .header-section {
         display: flex;
+        align-items: center;
         padding: 10px 20px;
-        font-family: Arial, Helvetica, sans-serif;
-        margin-bottom: -15px;
     }
 
     .logo {
@@ -24,8 +23,7 @@
         flex-direction: column;
     }
 
-    p {
+    .text-wrapper p {
         color: rgb(100, 100, 100);
-        margin: 0;
     }
 </style>

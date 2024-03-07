@@ -4,9 +4,6 @@
 }
 
 * {
-    font-family: 'SageText-Regular', Arial, sans-serif;
-}
-
-body {
     margin: 0;
+    font-family: 'SageText-Regular', Arial, sans-serif;
 }

@@ -1,23 +1,23 @@
 <script>
     import "$lib/global.css";
+    import { marked } from "marked";
     import { setContext } from 'svelte';
     import Header from "$lib/header.svelte"
-    import Content from "$lib/content.svelte"
-    import Footer from "$lib/footer.svelte"
+    import Chatbox from "$lib/chatbox.svelte"
+    import Input from "$lib/input.svelte"
 	
 	setContext('messageCtx', { SubmitMessage });
 	
     let child;
 
-	async function SubmitMessage(message) {
+	function SubmitMessage(message) {
         child.AddMessage(message);
         BackendCall(message);
 	}
 
     function BackendCall(prompt) {
 
-        const url = 'http://127.0.0.1:8000/ask';
-
+        const url = 'http://127.0.0.1:8000/ask/';
         const options = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json'},
@@ -33,26 +33,31 @@
                 return response.json();
             })
             .then(data => {
-                child.AddMessage(data.output);
+                child.AddMessage(marked(data.output));
             })
-            .catch(error => {
+            .catch(() => {
                 child.AddMessage('An unexpected problem occured. Please try again.');
             });
     }
 </script>
 
-<div>
+<div class="page">
     <Header></Header>
     <img class="gradient" src="gradient.png" alt="gradient">
-    <Content bind:this={child}></Content>
+    <Chatbox bind:this={child}></Chatbox>
     <img class="gradient" src="solid.png" alt="gradient">
-    <Footer></Footer>
+    <Input></Input>
 </div>
 
 <style>
+    .page {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+    }
+
     .gradient {
         width: 100%;
         height: 5px;
-        margin: -5px 0;
     }
 </style>
