@@ -14,11 +14,11 @@
     {#each messages as message, i}
         {#if i % 2 == 0}
             <div class="bubble bubble-user">
-                <div class="sub-bubble sub-bubble-user">{message}</div>
+                <pre class="sub-bubble sub-bubble-user">{message}</pre>
             </div>
         {:else}
             <div class="bubble bubble-copilot">
-                <div class="sub-bubble">{message}</div>
+                <pre class="sub-bubble">{message}</pre>
             </div>
         {/if}
     {/each}
@@ -49,6 +49,7 @@
         padding: 10px;
         border-radius: 10px;
         box-shadow: 0 0 10px rgb(200, 200, 200);
+        white-space: pre-wrap; /* Allows wrapping of text */
     }
 
     .sub-bubble-user {
