@@ -4,10 +4,18 @@
     export function AddMessage(NewMessage) {
         messages.push(NewMessage);
         messages = messages;
+        setTimeout(() => {
+            AutoScroll();
+        }, 10);
+    }
+
+    function AutoScroll() {
+        var scrollableElement = document.getElementById("scrollable");
+        scrollableElement.scrollTop = scrollableElement.scrollHeight;
     }
 </script>
 
-<section class="chatbox-section">
+<section class="chatbox-section" id="scrollable">
     {#each messages as message, i}
         {#if i % 2 == 0}
             <div class="chat-bubble chat-bubble-user">
@@ -23,9 +31,9 @@
 
 <style>
     .chatbox-section{
+        flex-grow: 1;
         max-height: 772px;
         padding: 20px 20px 0 20px;
-        flex-grow: 1;
         overflow: auto;
     }
 
